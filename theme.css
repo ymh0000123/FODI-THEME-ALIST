@@ -1,0 +1,98 @@
+#list {
+  border-radius: 0.75rem;
+  max-width: 980px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  margin-top: 5px;
+}
+body {
+  background-color: #f7f8fa;
+}
+.markdown-body img {
+  max-width: 90%;
+  max-height: 800px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.markdown-body h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+.password-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .password {
+    margin: 0 auto;
+    padding-top: 1em;
+    display: none;
+  }
+
+  .password input {
+    height: 2em;
+    outline: none;
+    border: solid rgb(218, 215, 215) 1px;
+    padding-inline-start: 0.75rem;
+    padding-inline-end: 0.75rem;
+    background-color: #f1f3f5;
+    min-height: 2.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .password button {
+      background-color: #e1f0ff;;
+      color: #006adc;;
+      padding-inline-start: 1rem;
+      padding-inline-end: 1rem;
+      border-radius: 0.4rem;
+      height: 2.5rem;
+      border: 1px solid transparent;
+  }
+
+  .password button:hover{
+    background-color: #cee7fe;;
+  }
+
+#file-wrapper {
+    padding: 0.5rem;;
+}
+.btn{
+    float: right;
+    text-align: center;
+    width: 4em;
+}
+.file {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding:0.5rem;
+}
+.file:hover{
+  transform: scale(1.01);
+  background-color: rgba(132, 133, 141, 0.18);
+  border-radius: 0.5rem;
+
+}
+.name {
+    width: 50%;
+    display: flex;
+}
+.size{
+    text-align: right;
+    width: 33%;
+}
+.time{
+    text-align: right;
+    width: 17%;
+}
+.content img{
+  border-radius: 0.5rem;
+}

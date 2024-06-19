@@ -280,31 +280,6 @@ async function renderTreeNode(files) {
         currentTreeNode = currentTreeNodeParent;
     }
 
-    const treeRoot = document.getElementById("tree-root");
-    treeRoot.innerHTML = "";
-    const cache = window.fileCache.get(window.api.root);
-    const currentNodeName =
-        currentTreeNode.querySelector(".tree-node-name").innerText;
-    if (cache) {
-        cache.files.forEach((file) => {
-            if (!file.url) {
-                if (file.name === currentNodeName) {
-                    treeRoot.append(currentTreeNode);
-                } else {
-                    treeRoot.append(
-                        createTreeNodeWrapper(
-                            "arrow-dropright",
-                            "folder",
-                            file.name,
-                            window.api.root + file.name
-                        )
-                    );
-                }
-            }
-        });
-    } else {
-        treeRoot.append(currentTreeNode);
-    }
 }
 
 async function renderMarkdown(path, url) {
