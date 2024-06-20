@@ -74,7 +74,6 @@ function renderPage(data, cache) {
         } else {
             renderFileList(files);
         }
-        renderTreeNode(files);
     }
     if (document.body.getAttribute("hidden")) {
         document.body.removeAttribute("hidden");
@@ -202,85 +201,6 @@ function renderFileList(files) {
     });
 }
 
-async function renderTreeNode(files) {
-    const createTreeNodeWrapper = (array, type, name, path) => {
-        let treeNodeWrapper = document
-            .getElementById("tree-node-wrapper-template")
-            .content.cloneNode(true);
-        let icons = treeNodeWrapper.querySelectorAll("ion-icon");
-        icons[0].setAttribute("name", array);
-        icons[1].setAttribute("name", type);
-        treeNodeWrapper.querySelector(".tree-node-name").innerText = name;
-        treeNodeWrapper.appendNode = (node) =>
-            treeNodeWrapper.querySelector(".tree-node-wrapper").append(node);
-        addTreeNodeListener(
-            treeNodeWrapper.querySelector(".tree-node"),
-            path
-        );
-        return treeNodeWrapper;
-    };
-
-    const paths = files.parent.split("/");
-    let absolutePath = (max) => {
-        let absolutePath = "";
-        for (let j = 1; j <= max; j++) {
-            absolutePath += "/" + paths[j];
-        }
-        return absolutePath;
-    };
-    let maxIndex = paths.length - 1;
-    let currentTreeNode = createTreeNodeWrapper(
-        "arrow-dropdown",
-        "folder-open",
-        paths[maxIndex],
-        absolutePath(maxIndex)
-    );
-    files.files.forEach((file) => {
-        if (!file.url) {
-            currentTreeNode.appendNode(
-                createTreeNodeWrapper(
-                    "arrow-dropright",
-                    "folder",
-                    file.name,
-                    files.parent + "/" + file.name
-                )
-            );
-        }
-    });
-
-    for (let i = maxIndex - 1; i > 0; i--) {
-        const currentTreeNodeParentAbsolutePath = absolutePath(i);
-        let currentTreeNodeParent = createTreeNodeWrapper(
-            "arrow-dropdown",
-            "folder",
-            paths[i],
-            currentTreeNodeParentAbsolutePath
-        );
-        let cache = window.fileCache.get(currentTreeNodeParentAbsolutePath);
-        if (cache) {
-            cache.files.forEach((file) => {
-                if (!file.url) {
-                    if (file.name === paths[i + 1]) {
-                        currentTreeNodeParent.appendNode(currentTreeNode);
-                    } else {
-                        currentTreeNodeParent.appendNode(
-                            createTreeNodeWrapper(
-                                "arrow-dropright",
-                                "folder",
-                                file.name,
-                                currentTreeNodeParentAbsolutePath + "/" + file.name
-                            )
-                        );
-                    }
-                }
-            });
-        } else {
-            currentTreeNodeParent.appendNode(currentTreeNode);
-        }
-        currentTreeNode = currentTreeNodeParent;
-    }
-
-}
 
 async function renderMarkdown(path, url) {
     const render = (text) => {

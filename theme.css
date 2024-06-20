@@ -63,7 +63,7 @@ h6 {
   }
 
 #file-wrapper {
-    padding: 0.5rem;;
+    padding: 0.5rem;
 }
 .btn{
     float: right;
@@ -115,4 +115,9 @@ h6 {
   transform: translate(45%, 0);
   padding: 20px;
   border-radius: 5px;
+}
+@media (max-width: 768px) {
+  .time{
+    display: none;
+  }
 }
