@@ -35,6 +35,8 @@ h6 {
     margin: 0 auto;
     padding-top: 1em;
     display: none;
+    width: 75%;
+    padding: 2rem;
   }
 
   .password input {
@@ -46,21 +48,39 @@ h6 {
     background-color: #f1f3f5;
     min-height: 2.5rem;
     border-radius: 0.5rem;
+    margin-top: 5px;
+    width: 100%;
   }
 
-  .password button {
-      background-color: #e1f0ff;;
-      color: #006adc;;
+  .password button#correct {
+      background-color: #e1f0ff;
+      color: #006adc;
       padding-inline-start: 1rem;
       padding-inline-end: 1rem;
       border-radius: 0.4rem;
       height: 2.5rem;
       border: 1px solid transparent;
+      margin-top: 5px;
   }
 
-  .password button:hover{
-    background-color: #cee7fe;;
+  .password button#correct:hover{
+    background-color: #cee7fe;
   }
+
+  .password button#back {
+    background-color: #eceef0;
+    color: #11181c;
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+    border-radius: 0.4rem;
+    height: 2.5rem;
+    border: 1px solid transparent;
+    margin-top: 5px;
+}
+
+.password button#back:hover{
+  background-color: #e6e8eb;
+}
 
 #file-wrapper {
     padding: 0.5rem;
@@ -111,6 +131,11 @@ h6 {
 }
 @keyframes l2 {to{transform: rotate(1turn)}}
 
+.passwordButton{
+  float: right;
+  margin-bottom: 10px;
+}
+
 .loading-wrapper {
   transform: translate(45%, 0);
   padding: 20px;
@@ -119,5 +144,8 @@ h6 {
 @media (max-width: 768px) {
   .time{
     display: none;
+  }
+  .password{
+    width: 100%;
   }
 }

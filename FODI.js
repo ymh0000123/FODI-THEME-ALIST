@@ -293,11 +293,13 @@ function handleEncryptedFolder(files) {
     switchRightDisplay("encrypted");
     const password = document.querySelector(".password");
     const input = password.querySelector("input");
-    const button = password.querySelector("button");
+    const button = password.querySelector("button#correct");
     const buttonParent = button.parentElement;
     const buttonClone = button.cloneNode(true);
     buttonParent.replaceChild(buttonClone, button);
     input.placeholder = "请输入密码";
+
+    
     buttonClone.addEventListener("click", (event) => {
         const passwd = input.value;
         if (!input.value) {
@@ -642,6 +644,7 @@ function addFileListLineListener(elem, path, url, size) {
 
 function addBackForwardListener() {
     document.getElementById("arrow-back").addEventListener("click", back);
+    document.getElementById('back').addEventListener('click', back);
     document
         .getElementById("arrow-forward")
         .addEventListener("click", forward);

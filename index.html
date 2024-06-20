@@ -1,9 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      /**
+       * SCF_GATEWAY：SCF 云函数网关地址
+       * SITE_NAME：站点名称
+       */
+      window.GLOBAL_CONFIG = {
+        SCF_GATEWAY: "//",
+        SITE_NAME: "文件列表",
+        IS_CF: true,
+      };
+      if (window.GLOBAL_CONFIG.SCF_GATEWAY.indexOf("workers") === -1) {
+        window.GLOBAL_CONFIG.SCF_GATEWAY += "/";
+        window.GLOBAL_CONFIG.IS_CF = true;
+      }
+    </script>
+    <script src="./FODI.js"></script>
+    <link rel="stylesheet" href="./theme.css" />
+    <script
+      type="module"
+      src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/ionicons/4.6.3/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/ionicons/4.6.3/ionicons/ionicons.js"
+    ></script>
+    <script src="//s0.pstatp.com/cdn/expire-1-M/marked/0.6.2/marked.min.js"></script>
+    <script src="//s0.pstatp.com/cdn/expire-1-M/highlight.js/9.15.6/highlight.min.js"></script>
+    <link
+      href="//s0.pstatp.com/cdn/expire-1-M/highlight.js/9.15.6/styles/github.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="//s0.pstatp.com/cdn/expire-1-M/github-markdown-css/3.0.1/github-markdown.min.css"
+      rel="stylesheet"
+    />
+    <script src="//s0.pstatp.com/cdn/expire-1-M/jquery/3.4.0/jquery.min.js"></script>
+    <script src="//s0.pstatp.com/cdn/expire-1-M/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <link
+      href="//s0.pstatp.com/cdn/expire-1-M/fancybox/3.5.7/jquery.fancybox.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <template id="file-wrapper-templete">
+      <div class="row file-wrapper">
+        <div class="file">
+          <ion-icon></ion-icon>
+          <span class="name"></span>
+          <span class="time"></span>
+          <span class="size"></span>
+        </div>
+      </div>
+    </template>
+    <template id="loading-wrapper-templete">
+      <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
+    </template>
+    <div class="header-wrapper">
+      <div class="header">
+        <ion-icon id="arrow-back" class="logo" name="arrow-back"></ion-icon>
+        <ion-icon
+          id="arrow-forward"
+          class="logo"
+          name="arrow-forward"
+        ></ion-icon>
+        <div>
+          <span id="main-page">
+            <span class="site" id="nav-site">ONEDRIVE</span>
+          </span>
+          <span id="path"></span>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="main">
+        <div id="list">
+          <!--列表头-->
+          <div class="list-header">
+            <div class="row">
+              <div class="file">
+                <span class="name">名称</span>
+                <span class="time">时间</span>
+                <span class="size">大小</span>
+              </div>
+            </div>
+          </div>
+          <!--文件列表生成-->
+          <div id="file-list"></div>
+          <!--预览♂-->
+          <div class="preview">
+            <div class="info">
+              <div class="file-name"></div>
+              <div class="btn download">下载</div>
+              <div class="btn quote">引用</div>
+              <div class="btn share">分享</div>
+            </div>
+            <!--预览-->
+            <div class="content"></div>
+          </div>
+          <!--加载动画-->
+          <div class="loading-wrapper">
+            <div class="loader"></div>
+            <div class="loading">Loading...</div>
+          </div>
+          <!--密码-->
+          <div class="password-wrapper">
+            <div class="password">
+              <h2>请输入密码</h2>
+              <div><input type="password" /></div>
+              <div class="passwordButton">
+                <button id="back">取消</button>
+                <button id="correct">提交</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="markdown-body" id="list">
+          <div id="readme"><div class="loader"></div></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
