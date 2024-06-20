@@ -299,7 +299,7 @@ function handleEncryptedFolder(files) {
     buttonParent.replaceChild(buttonClone, button);
     input.placeholder = "请输入密码";
 
-    
+
     buttonClone.addEventListener("click", (event) => {
         const passwd = input.value;
         if (!input.value) {
@@ -643,11 +643,15 @@ function addFileListLineListener(elem, path, url, size) {
 }
 
 function addBackForwardListener() {
-    document.getElementById("arrow-back").addEventListener("click", back);
+    if (document.querySelector("arrow-back")) {
+        document.getElementById("arrow-back").addEventListener("click", back);
+    }
+    if (document.querySelector("arrow-forward")) {
+        document
+            .getElementById("arrow-forward")
+            .addEventListener("click", forward);
+    }
     document.getElementById('back').addEventListener('click', back);
-    document
-        .getElementById("arrow-forward")
-        .addEventListener("click", forward);
     document.querySelector("#main-page").addEventListener("click", () => {
         fetchFileList(window.api.root);
         switchBackForwardStatus(window.api.root);
@@ -694,21 +698,30 @@ function switchBackForwardStatus(path) {
         window.backFordwardCache.root !== window.backFordwardCache.current
     ) {
         window.backFordwardCache.backable = true;
-        document.getElementById("arrow-back").style.color = "black";
+        if (document.querySelector("arrow-back")) {
+            document.getElementById("arrow-back").style.color = "black";
+        }
     } else {
         window.backFordwardCache.backable = false;
-        document.getElementById("arrow-back").style.color =
-            "rgb(218, 215, 215)";
+        if (document.querySelector("arrow-back")) {
+            document.getElementById("arrow-back").style.color =
+                "rgb(218, 215, 215)";
+        }
+
     }
     if (
         window.backFordwardCache.deepest !== window.backFordwardCache.current
     ) {
         window.backFordwardCache.forwardable = true;
-        document.getElementById("arrow-forward").style.color = "black";
+        if (document.querySelector("arrow-back")) {
+            document.getElementById("arrow-forward").style.color = "black";
+        }
     } else {
         window.backFordwardCache.forwardable = false;
-        document.getElementById("arrow-forward").style.color =
-            "rgb(218, 215, 215)";
+        if (document.querySelector("arrow-back")) {
+            document.getElementById("arrow-forward").style.color =
+                "rgb(218, 215, 215)";
+        }
     }
 }
 

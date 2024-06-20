@@ -88,7 +88,16 @@ h6 {
 .btn{
     float: right;
     text-align: center;
-    width: 4em;
+    width: 5em;
+    background-color: #ede9fe;
+    color: #5746af;
+    padding-inline-start: 1rem;
+      padding-inline-end: 1rem;
+      border-radius: 0.4rem;
+      border: 1px solid transparent;
+      margin-top: 5px;
+      margin-left: 2px;
+      margin-bottom: 5px;
 }
 .file {
     width: 100%;
@@ -117,6 +126,16 @@ h6 {
 .content img{
   border-radius: 0.5rem;
 }
+.file-wrapper{
+  cursor: pointer;
+}
+.preview{
+  padding:0.7rem;
+}
+#nav-site,#path{
+  cursor: pointer;
+}
+
 *{
   box-sizing: border-box;
 }
